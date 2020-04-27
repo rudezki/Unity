@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     public float verticalInput;
     public float horizontalSpeed;
     public float verticalSpeed;
+    public bool gameOver = false;
     private float zBoundary = 10.0f;
     private float xBoundary = 10.0f;
+    private GameObject virus;
     // Start is called before the first frame update
     void Start()
     {
-
+        virus = GameObject.Find("Virus Cloud");
     }
 
     // Update is called once per frame
@@ -49,6 +51,26 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > xBoundary)
         {
             transform.position = new Vector3(xBoundary, transform.position.y, transform.position.z);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Virus cloud")
+        {
+            Debug.Log("Game over");
+            gameOver = true;
+        }
+        if (other.gameObject.tag == "Powerup")
+        {
+            Debug.Log("Power up!");
+            Destroy(other.gameObject);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Person")
+        {
+
         }
     }
 }
