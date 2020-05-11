@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI timeText;
     public Button restartButton;
     public bool isGameActive;
 
@@ -45,10 +46,20 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public void UpdateTime(float timeLeft)
+    {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            GameOver();
+        }
+    }
+
     public void GameOver()
     {
         restartButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
+        timeText.gameObject.SetActive(false);
         isGameActive = false;
     }
 
@@ -65,6 +76,8 @@ public class GameManager : MonoBehaviour
         spawnRate /= difficultySetting;
         score = 0;
         UpdateScore(0);
+        UpdateTime(60.0f);
+        timeText.gameObject.SetActive(true);
         titleScreen.gameObject.SetActive(false);
     }
  
