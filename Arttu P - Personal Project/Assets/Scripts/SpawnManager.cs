@@ -7,8 +7,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemies;
     public GameObject powerup;
     public GameObject virusCloud;
-
-    private float spawnRangeX = 12.0f;
+    
+    public float spawnRangeX = 12.0f;
     private float spawnRangeZ = 16.0f;
     private float spawnRangeY = 0.5f;
 
@@ -23,7 +23,6 @@ public class SpawnManager : MonoBehaviour
     {
         InvokeRepeating("SpawnRandomEnemy", startDelay, enemySpawnTime);
         InvokeRepeating("SpawnPowerup", startDelay, powerupSpawnTime);
-        InvokeRepeating("SpawnCloudOnEnemy", coughStartDelay, virusSpawnTime);
     }
 
     // Update is called once per frame
@@ -35,11 +34,16 @@ public class SpawnManager : MonoBehaviour
     {
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
         int randomIndex = Random.Range(0, enemies.Length);
+        GameObject randomEnemy = enemies[randomIndex];
 
         Vector3 spawnPos = new Vector3(randomX, spawnRangeY, spawnRangeZ);
 
-        Instantiate(enemies[randomIndex], spawnPos, enemies[randomIndex].gameObject.transform.rotation);
-        
+        Instantiate(randomEnemy, spawnPos, randomEnemy.gameObject.transform.rotation);
+
+        if (randomEnemy = GameObject.FindGameObjectWithTag("Infected"))
+        {
+            StartCoroutine(SpawnCloudOnEnemy(randomEnemy));
+        }
     }
     void SpawnPowerup()
     {
@@ -49,13 +53,15 @@ public class SpawnManager : MonoBehaviour
 
         Instantiate(powerup, spawnPos, powerup.gameObject.transform.rotation);
     }
-    void SpawnCloudOnEnemy()
+    IEnumerator SpawnCloudOnEnemy(GameObject infectedEnemy)
     {
-        foreach (GameObject infectedEnemy in GameObject.FindGameObjectsWithTag("Infected"))
-        {
-            Vector3 spawnPos = new Vector3(infectedEnemy.gameObject.transform.rotation.x, virusCloud.gameObject.transform.rotation.y, infectedEnemy.gameObject.transform.rotation.z);
+        
 
-            Instantiate(virusCloud, spawnPos, virusCloud.gameObject.transform.rotation);
-        }
+        Vector3 pointOfOrigin = new Vector3(infectedEnemy.transform.position.x, infectedEnemy.transform.position.y, infectedEnemy.transform.position.z);
+        GameObject childCloud = Instantiate(virusCloud, pointOfOrigin, Quaternion.identity);
+        childCloud.transform.parent = gameObject.transform;
+        
+        Instantiate(childCloud, pointOfOrigin, virusCloud.gameObject.transform.rotation);
+        yield return new WaitForSeconds(3);
     }
 }

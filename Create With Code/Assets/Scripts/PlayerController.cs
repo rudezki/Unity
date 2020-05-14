@@ -5,16 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //Private variables
-    private float speed = 5.0f;
-    private float turnSpeed;
+    [SerializeField] const float speed = 5.0f;
+    [SerializeField] static float turnSpeed;
     private float horizontalInput;
     private float forwardInput;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()

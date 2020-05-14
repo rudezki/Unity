@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float horizontalSpeed;
     public float verticalSpeed;
     public bool gameOver = false;
-    private float zBoundary = 10.0f;
-    private float xBoundary = 10.0f;
+    public float zBoundary = 10.0f;
+    public float xBoundary = 10.0f;
     private GameObject virus;
     // Start is called before the first frame update
     void Start()
