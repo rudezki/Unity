@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 576727734433527015}
   - component: {fileID: 576727734434657831}
   - component: {fileID: 576727735288975990}
-  - component: {fileID: 1963137563935134212}
   - component: {fileID: 367049897264866189}
-  - component: {fileID: 114802607695566842}
   - component: {fileID: 1767219149}
+  - component: {fileID: 114572308957117338}
   m_Layer: 0
   m_Name: Food_Pizza_01
   m_TagString: Untagged
@@ -95,20 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
---- !u!114 &1963137563935134212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576727734436587751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838a560b3fe2de343ad0ab4b25db5b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topBound: 30
-  bottomBound: -10
 --- !u!65 &367049897264866189
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,18 +107,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.4597009, y: 0.34823573, z: 0.55363166}
   m_Center: {x: 0, y: 0.107943535, z: -0.00000017881393}
---- !u!114 &114802607695566842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576727734436587751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f361f928e51a34593db5293ea82420, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1767219149
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,3 +123,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114572308957117338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576727734436587751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c52ee72091692143869a36cdefe1fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
