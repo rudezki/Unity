@@ -25,8 +25,8 @@ GameObject:
   - component: {fileID: 8286316162156283089}
   - component: {fileID: 8286316162156283090}
   - component: {fileID: 8286316162156283091}
-  - component: {fileID: 8286316162156283103}
   - component: {fileID: 8286316162156283102}
+  - component: {fileID: 114395984792164636}
   m_Layer: 0
   m_Name: Uninfected
   m_TagString: Person
@@ -41,14 +41,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8286316162156283092}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.5677233, y: -21.41, z: 23.379732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2768147368124555990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &8286316162156283089
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,19 +107,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8286316162156283103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8286316162156283092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f2e48bb6a781a458f76695f78f7c97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!54 &8286316162156283102
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +123,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &114395984792164636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286316162156283092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f8e336cf9b7fe9429b5f74d1e718166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virusCloudPrefab: {fileID: 5196920230459986380, guid: af1d4908b76086049a35e64995577e7c,
+    type: 3}
 --- !u!1001 &2768147368124168278
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ TagManager:
   - Undefined
   - Infected
   - Powerup
+  - Person
+  - VirusCloud
   layers:
   - Default
   - TransparentFX

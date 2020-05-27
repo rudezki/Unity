@@ -41,14 +41,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8350539122529946669}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.9322767, y: -21.44, z: 23.23973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 621158378999973683}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &8350539122529946670
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,8 +105,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.7983227, z: 1}
-  m_Center: {x: 0, y: 0.18490887, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8350539122529946659
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  virusCloudPrefab: {fileID: 5196920230459986380, guid: af1d4908b76086049a35e64995577e7c,
+    type: 3}
 --- !u!1001 &621158378999848433
 PrefabInstance:
   m_ObjectHideFlags: 0

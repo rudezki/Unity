@@ -1,29 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    private Animator playerAnim;
+
+    public GameObject playerModel;
+    public GameObject invincibilityIndicator;
+    public TextMeshProUGUI scoreDisplay;
+    public TextMeshProUGUI gameoverText;
+    public TextMeshProUGUI gameSplashText;
+    public TextMeshProUGUI instructionText;
+    public TextMeshProUGUI victoryText;
+    public Button gameStartButton;
+    public Button restartButton;
+    public Rigidbody playerRigidbody;
     public float horizontalInput;
     public float verticalInput;
     public float horizontalSpeed;
     public float verticalSpeed;
+    private float zBoundary = 5.0f;
+    private float zBoundaryForward = 11.0f;
+    private float xBoundary = 12.5f;
     public bool gameOver = false;
-    public float zBoundary = 10.0f;
-    public float xBoundary = 10.0f;
-    private GameObject virus;
+    public bool gameStart = false;
+    public bool hasImmunity = false;
+    public bool youWinTheGame = false;
+
+    private int score;
     // Start is called before the first frame update
     void Start()
     {
-        virus = GameObject.Find("Virus Cloud");
+        playerRigidbody = GetComponent<Rigidbody>();
+        playerAnim = playerModel.GetComponent<Animator>();
+        gameoverText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        PlayerBoundary();
-  
+        invincibilityIndicator.transform.position = playerRigidbody.transform.position;
+        if (!gameOver && gameStart && !youWinTheGame)
+        {
+            UpdateScore(1);
+            PlayerBoundary();
+            MovePlayer();
+        }
     }
     //This moves player
     void MovePlayer()
@@ -40,9 +66,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -zBoundary);
         }
-        if (transform.position.z > zBoundary)
+        if (transform.position.z > zBoundaryForward)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zBoundary);
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBoundaryForward);
         }
         if (transform.position.x < -xBoundary)
         {
@@ -55,22 +81,59 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Virus cloud")
+        if (other.gameObject.tag == "VirusCloud" && !hasImmunity && !youWinTheGame)
         {
-            Debug.Log("Game over");
             gameOver = true;
+            playerAnim.SetBool("Death_b", true);
+            playerAnim.SetInteger("DeathType_int", 2);
+            gameoverText.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
         }
         if (other.gameObject.tag == "Powerup")
         {
-            Debug.Log("Power up!");
+            hasImmunity = true;
+            StartCoroutine(InvulnerabilityFrames());
+            invincibilityIndicator.gameObject.SetActive(true);
             Destroy(other.gameObject);
         }
+        
     }
-    private void OnCollisionEnter(Collision collision)
+    private void UpdateScore(int scoreToAdd)
     {
-        if (collision.gameObject.tag == "Person")
-        {
+        score += scoreToAdd;
+        scoreDisplay.text = "score: " + score;
+    }
+    public void StartGame()
+    {
+        gameStart = true;
+        StartCoroutine(CountDownToEnd());
+        gameSplashText.gameObject.SetActive(false);
+        gameStartButton.gameObject.SetActive(false);
+        instructionText.gameObject.SetActive(false);
 
-        }
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    IEnumerator InvulnerabilityFrames()
+    {
+        yield return new WaitForSeconds(6);
+        hasImmunity = false;
+        invincibilityIndicator.SetActive(false);
+
+    }
+    IEnumerator CountDownToEnd()
+    {
+        yield return new WaitForSeconds(60);
+        YouWin();
+    }
+    private void YouWin()
+    {
+        youWinTheGame = true;
+        victoryText.gameObject.SetActive(true);
+        playerAnim.SetBool("Static_b", true);
+        playerAnim.SetFloat("Speed_f", 0.0f);
+        restartButton.gameObject.SetActive(true);
     }
 }
