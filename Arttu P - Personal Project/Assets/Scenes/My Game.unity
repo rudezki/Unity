@@ -2278,6 +2278,11 @@ PrefabInstance:
       propertyPath: backGroundMusic
       value: 
       objectReference: {fileID: 8300000, guid: aac0a360368e94c72808af3c16befc8e, type: 3}
+    - target: {fileID: 3524344326110172321, guid: dbb5d1efb786699418725ca8e4d6a8c7,
+        type: 3}
+      propertyPath: gameOverSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2662a34448ad7451dbb0fcc4c936754a, type: 3}
     - target: {fileID: 3524344326110172331, guid: dbb5d1efb786699418725ca8e4d6a8c7,
         type: 3}
       propertyPath: m_Name

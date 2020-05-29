@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
 
     public AudioClip powerupSound;
+    public AudioClip gameOverSound;
     public GameObject playerModel;
     public GameObject invincibilityIndicator;
     public TextMeshProUGUI scoreDisplay;
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "VirusCloud" && !hasImmunity && !youWinTheGame)
         {
+            playerAudio.PlayOneShot(gameOverSound, 1.0f);
             gameOver = true;
             playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 2);
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator InvulnerabilityFrames()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(7);
         hasImmunity = false;
         invincibilityIndicator.SetActive(false);
 
