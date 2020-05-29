@@ -9,11 +9,14 @@ public class EnemyController : MonoBehaviour
     private float coughWaitTimer;
     private float zBoundary = -10.0f;
     private bool gameOverSpeed;
+    private AudioSource enemyAudio;
+    [SerializeField] private AudioClip cough;
     private PlayerController playerControlScript;
     public GameObject virusCloudPrefab;
     // Start is called before the first frame update
     void Start()
     {
+        enemyAudio = GetComponent<AudioSource>();
         playerControlScript = GameObject.Find("Player").GetComponent<PlayerController>();
         speed = Random.Range(4.0f, 6.0f);
 
@@ -37,6 +40,7 @@ public class EnemyController : MonoBehaviour
 
         if (coughWaitTimer <= 0.0f && tag == "Infected")
         {
+            enemyAudio.PlayOneShot(cough, 1.0f);
             Vector3 pointOfOrigin = new Vector3(transform.position.x, 1, transform.position.z);
             Instantiate(virusCloudPrefab, pointOfOrigin, virusCloudPrefab.gameObject.transform.rotation);
             coughWaitTimer = Random.Range(1.0f, 3.0f);

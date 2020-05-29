@@ -8,7 +8,9 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private Animator playerAnim;
+    private AudioSource playerAudio;
 
+    public AudioClip powerupSound;
     public GameObject playerModel;
     public GameObject invincibilityIndicator;
     public TextMeshProUGUI scoreDisplay;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnim = playerModel.GetComponent<Animator>();
         gameoverText.gameObject.SetActive(false);
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "Powerup")
         {
+            playerAudio.PlayOneShot(powerupSound, 1.0f);
             hasImmunity = true;
             StartCoroutine(InvulnerabilityFrames());
             invincibilityIndicator.gameObject.SetActive(true);
